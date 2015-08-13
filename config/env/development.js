@@ -22,48 +22,8 @@ module.exports = {
   // }
 
   site: {
-    title: 'Subscription Admin Application',
+    title: 'How-To Examples',
     buildVersion: '???',
-    buildDate: '???',
-    roles: {
-      'user': ['Subscription Admin User'],
-      'manager': ['Subscription Admin Manager'],
-      'superUser': ['Subscription Admin Super User']
-    }
-  },
-  services: {
-    auth: {
-      url: 'http://api-sandbox.dataconversions.biz',
-      //url: 'http://localhost:8082',
-      origin: 'admin.subscription.com.dev',
-      credentials: 'Subscription Admin Application',
-      authSpaceId: '2'
-    },
-    content: {
-      url: 'http://api-sandbox.dataconversions.biz'
-      //url: 'http://localhost:8080'
-    },
-    delivery: {
-      url: 'http://api-sandbox.dataconversions.biz'
-    },
-    legacy: {
-      url: 'http://api-sandbox.dataconversions.biz'
-    },
-    user: {
-      url: 'http://api2-sandbox.dataconversions.biz'
-    },
-    email: {
-      url: 'http://api2-sandbox.dataconversions.biz'
-    },
-    application: {
-      url: 'http://api2-sandbox.dataconversions.biz'
-      //url: 'http://192.168.202.89:8093'
-    }
-  },
-  misc: {
-    theaterBasePath: 'http://theater.aebn.net/',
-    disServerTenSecondUrl: 'http://pic.aebn.net/dis/t/',
-    disServerUrl: 'http://pic.aebn.net/dis/i/'
+    buildDate: '???'
   }
-
 };
