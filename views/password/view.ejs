@@ -7,10 +7,10 @@
         <form class="well form-signin" role="form" action="/login" method="POST">
             <h2 class="form-signin-heading">Sign In <small>Any value works</small></h2>
             <label for="username" class="sr-only">Username</label>
-            <input name="user[name]" id="username" type="text" class="form-control" placeholder="Username" required autofocus>
+            <input name="user[username]" id="username" type="text" class="form-control" placeholder="Username" required autofocus>
             <label for="password" class="sr-only">Password</label>
             <div class="input-group" id="passwordGroup">
-                <input type="password" name="user[password]" class="form-control" placeholder="password" value=""/>
+                <input type="password" name="user[password]" class="form-control" placeholder="password" value="" required/>
                 <span class="input-group-addon"><span class="glyphicon-eye-close glyphicon"></span></span>
             </div>
             <div>&nbsp;</div>
@@ -24,19 +24,15 @@
         <strong>Html</strong>
     </div>
     <div class="panel-body">
-
-
         <%
-
             var contents = fileService.getFileContents("views/password/view.ejs");
-
             contents = fileService.clipTextBetween(contents,"<form", "</form>");
         %>
 
-        <pre>
-            <%= contents %>
-        </pre>
+        <pre class="prettyprint">
 
+        <%= contents %>
+        </pre>
     </div>
 </div>
 

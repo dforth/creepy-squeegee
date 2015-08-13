@@ -72,6 +72,11 @@ module.exports.routes = {
   'GET /password': {
     controller: 'PasswordController',
     action: 'getView'
+  },
+
+  'POST /login': {
+    controller: 'PasswordController',
+    action: 'login'
   }
 
 };

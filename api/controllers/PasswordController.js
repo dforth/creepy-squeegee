@@ -9,3 +9,14 @@ module.exports.getView = function (req, res) {
     });
 
 };
+
+module.exports.login = function (req, res) {
+
+    var user = req.body.user;
+
+    MessageService.successMessage(req, "username: '" + user.username + "', password: '" + user.password + "'");
+
+    return res.view('password/view', {
+
+    });
+};
