@@ -5,7 +5,7 @@ module.exports.readReadme = function() {
     var contents = null;
     try {
 
-        contents = fs.readFileSync("readme.md", "utf8");
+        contents = fs.readFileSync("README.md", "utf8");
         sails.log.debug('readme contents = ', contents);
 
     } catch(error) {
