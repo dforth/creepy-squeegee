@@ -14,6 +14,7 @@
             <label for="password" class="sr-only">Password</label>
 
             <div id="passwordFieldContainer">
+                <!-- Note switching this to <div id="..." /> breaks things -->
             </div>
 
             <div>&nbsp;</div>
@@ -53,5 +54,13 @@
     </div>
     <div class="panel-body">
 
+        <%
+            var ejxSource = fileService.getFileContents("assets/jsx/PasswordField.jsx");
+        %>
+
+        <pre class="prettyprint">
+
+<%= ejxSource %>
+        </pre>
     </div>
 </div>
