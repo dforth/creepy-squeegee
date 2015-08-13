@@ -5,16 +5,27 @@
     <div class="panel-body">
 
         <form class="well form-signin" role="form" action="/login" method="POST">
+
+            <script src="/jsx/PasswordField.js" ></script>
+
             <h2 class="form-signin-heading">Sign In <small>Any value works</small></h2>
             <label for="username" class="sr-only">Username</label>
             <input name="user[username]" id="username" type="text" class="form-control" placeholder="Username" required autofocus>
             <label for="password" class="sr-only">Password</label>
-            <div class="input-group" id="passwordGroup">
-                <input type="password" name="user[password]" class="form-control" placeholder="password" value="" required/>
-                <span class="input-group-addon"><span class="glyphicon-eye-close glyphicon"></span></span>
+
+            <div id="passwordFieldContainer">
             </div>
+
             <div>&nbsp;</div>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+            <script>
+                var passwordFieldHandle = React.render(
+                        React.createElement(PasswordField, {fieldName: 'user[password]'}),
+                        document.getElementById('passwordFieldContainer')
+                );
+            </script>
+
         </form>
     </div>
 </div>
