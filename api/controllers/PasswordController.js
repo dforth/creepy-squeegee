@@ -14,7 +14,14 @@ module.exports.login = function (req, res) {
 
     var user = req.body.user;
 
-    MessageService.successMessage(req, "username: '" + user.username + "', password: '" + user.password + "'");
+    if (user) {
+
+        MessageService.successMessage(req, "Server received: username='" + user.username + "', password='" + user.password + "'");
+
+    } else {
+
+        MessageService.errorMessage(req, "User information not sent. Check your code.");
+    }
 
     return res.view('password/view', {
 
