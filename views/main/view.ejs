@@ -6,7 +6,7 @@
         <%
             var converter = new pagedown.Converter();
 
-            var markdown = readmeService.readReadme();
+            var markdown = fileService.getFileContents("README.md");
 
             var reademe = "";
             if (markdown != null) {

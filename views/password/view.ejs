@@ -3,5 +3,48 @@
         <strong>Password Field Example</strong>
     </div>
     <div class="panel-body">
+
+        <form class="well form-signin" role="form" action="/login" method="POST">
+            <h2 class="form-signin-heading">Sign In <small>Any value works</small></h2>
+            <label for="username" class="sr-only">Username</label>
+            <input name="user[name]" id="username" type="text" class="form-control" placeholder="Username" required autofocus>
+            <label for="password" class="sr-only">Password</label>
+            <div class="input-group" id="passwordGroup">
+                <input type="password" name="user[password]" class="form-control" placeholder="password" value=""/>
+                <span class="input-group-addon"><span class="glyphicon-eye-close glyphicon"></span></span>
+            </div>
+            <div>&nbsp;</div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+    </div>
+</div>
+
+<div class="panel panel-default" id="messagesPanel">
+    <div class="panel-heading">
+        <strong>Html</strong>
+    </div>
+    <div class="panel-body">
+
+
+        <%
+
+            var contents = fileService.getFileContents("views/password/view.ejs");
+
+            contents = fileService.clipTextBetween(contents,"<form", "</form>");
+        %>
+
+        <pre>
+            <%= contents %>
+        </pre>
+
+    </div>
+</div>
+
+<div class="panel panel-default" id="messagesPanel">
+    <div class="panel-heading">
+        <strong>React Source</strong>
+    </div>
+    <div class="panel-body">
+
     </div>
 </div>
