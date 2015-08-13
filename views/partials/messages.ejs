@@ -1,0 +1,56 @@
+
+<div style="padding-top: 5px;">
+
+    <% if(req.session.flash && req.session.flash.info) { %>
+
+    <% req.flash('info').forEach(function(message) { %>
+
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span><%= message %></span>
+    </div>
+
+    <% }); %>
+
+    <% } %>
+
+    <% if(req.session.flash && req.session.flash.success) { %>
+
+    <% req.flash('success').forEach(function(message) { %>
+
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Success!</strong> <span><%= message %></span>
+    </div>
+
+    <% }); %>
+
+    <% } %>
+
+    <% if(req.session.flash && req.session.flash.warning) { %>
+
+    <% req.flash('warning').forEach(function(message) { %>
+
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Warning!</strong> <span><%= message %></span>
+    </div>
+
+    <% }); %>
+
+    <% } %>
+
+    <% if(req.session.flash && req.session.flash.danger) { %>
+
+    <% req.flash('danger').forEach(function(message) { %>
+
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Danger!</strong> <span><%= message %></span>
+    </div>
+
+    <% }); %>
+
+    <% } %>
+
+</div>
