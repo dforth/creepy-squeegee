@@ -63,6 +63,15 @@ module.exports.routes = {
   'GET /ratings': {
     controller: 'RatingsController',
     action: 'getView'
+  },
+
+  /**
+   * Password Field Example
+   */
+
+  'GET /password': {
+    controller: 'PasswordController',
+    action: 'getView'
   }
 
 };

@@ -87,8 +87,9 @@
                                 return (req.path.indexOf(root) == 0);
                             }
                         %>
-
+                        <li class="<% if (isActivePath('/password')) { %>active<% } %>"><a href="/password"><strong>Password Field</strong> <span class="sr-only">(current)</span></a></li>
                         <li class="<% if (isActivePath('/ratings')) { %>active<% } %>"><a href="/ratings"><strong>Ratings</strong> <span class="sr-only">(current)</span></a></li>
+
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
