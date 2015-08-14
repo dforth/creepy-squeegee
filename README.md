@@ -14,6 +14,7 @@ Examples using NodeJS, SailsJS, and React JS
 * [lodash](https://lodash.com/)
 * [pagedown](https://code.google.com/p/pagedown/)
 * [code-prettify](https://github.com/google/code-prettify)
+* [EJS](http://www.embeddedjs.com)
 
 ## Getting Started
 

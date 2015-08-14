@@ -1,3 +1,14 @@
+/**
+ * React Control to handle display and update of ratings.  This control expects a 0-5 value for user ratings, or average ratings.
+ * If we have no user rating ( equals zero ), we display the average rating.
+ *
+ * property: id - make sure your controls have unique id's
+ * property: userValue - user's value
+ * property: averageValue - average system value
+ * property: updateCallback - callback function with signature of (newValue, context)
+ * property: updateContext - context object that will be passed to the update callback
+ *
+ */
 var RatingsControl = React.createClass({
 
     getInitialState: function() {

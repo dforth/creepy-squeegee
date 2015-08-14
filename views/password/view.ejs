@@ -4,6 +4,7 @@
     </div>
     <div class="panel-body">
 
+        <!-- Code between the Start and End will be displayed on the example page -->
         <!-- Start -->
         <script src="/jsx/PasswordField.js" ></script>
 
@@ -14,8 +15,10 @@
             <input name="user[username]" id="username" type="text" class="form-control" placeholder="Username" required="true" autofocus="true">
             <label for="password" class="sr-only">Password</label>
 
+            <!-- This container will be where our Control goes -->
             <div id="passwordFieldContainer">
                 <!-- Note switching this to <div id="..." /> breaks things -->
+                <!-- any content inside of this container will be replaced -->
             </div>
 
             <div>&nbsp;</div>
@@ -24,8 +27,9 @@
         </form>
 
         <script>
+            // Render a react element into the specified element
             var passwordFieldHandle = React.render(
-                    React.createElement(PasswordField, {fieldName: 'user[password]'}),
+                    React.createElement(PasswordField, {id:'0', fieldName: 'user[password]'}),
                     document.getElementById('passwordFieldContainer')
             );
         </script>

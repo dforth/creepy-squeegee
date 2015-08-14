@@ -1,3 +1,5 @@
+// Simple service to get the contents of a text file, used to display code on the example pages.
+
 var fs = require("fs");
 
 module.exports.getFileContents = function(path) {
@@ -16,6 +18,7 @@ module.exports.getFileContents = function(path) {
     return contents;
 };
 
+// Helper method to pull out chunks from the file content - should probably refactored into another service, its not directly related to filess
 module.exports.clipTextBetween = function(text, startText, endText, includeStartAndEnd) {
 
     var result = text;

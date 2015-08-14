@@ -1,4 +1,4 @@
-
+// Service to manage data for the ratings example.  We just keep the ratings data in memory.
 
 var ratingsData = null;
 

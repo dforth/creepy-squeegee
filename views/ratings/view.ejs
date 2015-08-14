@@ -3,11 +3,15 @@
         <strong>Ratings Example</strong>
     </div>
     <div class="panel-body">
+
+        <!-- Code between the Start and End will be displayed on the example page -->
         <!-- Start -->
         <script src="/jsx/RatingsControl.js" ></script>
 
         <script>
 
+            // Callback function we will use to update ratings - Keep the control generic
+            // Context is data we passed through the control so we know which specific data item we are dealing with
             function updateRating(ratingValue, context) {
 
                 $.ajax({
@@ -33,6 +37,7 @@
 
         </script>
 
+        <!-- Add a div for each thingy, and attach a RatingsControl to each one. -->
         <% ratingsData.forEach(function(thingy) { %>
             <div class="ratings-control-group">
                 <strong>Rateable Thingy <%= thingy["thingyId"] %></strong>
@@ -40,6 +45,7 @@
                 </span>
             </div>
             <script>
+                // Note: we pass in everything we need to make each intance of the control independant and unique.
                 React.render(
                         React.createElement(RatingsControl, {
                             id: '<%= thingy["thingyId"] %>',

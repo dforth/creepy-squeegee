@@ -1,9 +1,17 @@
+/**
+ * React Control that represents a password input field with visiblity toggle.
+ *
+ * property: fieldName input control name
+ * property: id additional value to make sure this is unique.
+ *
+ *
+ */
 var PasswordField = React.createClass({
 
     getInitialState: function() {
-
+        // Initial state of the control - we could make this controllable via property
         return {
-            closed: true
+            secure: true
         };
     },
     componentDidMount: function() {
@@ -13,22 +21,27 @@ var PasswordField = React.createClass({
 
     },
     _handleClick: function(e) {
+
         e.stopPropagation();
 
-        this.setState({closed: !this.state.closed});
+        // Toggle security
+        this.setState({secure: !this.state.secure});
     },
     render: function() {
 
+        // Set things up to be secure
         var glyphClass = "glyphicon-eye-close glyphicon";
         var inputType = "password";
 
-        if (!this.state.closed) {
+        // Are we secure
+        if (!this.state.secure) {
+
             glyphClass = "glyphicon-eye-open glyphicon";
             inputType = "text";
         }
 
         return (
-            <div className="input-group" id="passwordField">
+            <div className="input-group" id={"passwordField-" + this.props.id}>
                 <input
                     type={inputType}
                     name={this.props['fieldName']}

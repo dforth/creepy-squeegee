@@ -4,16 +4,18 @@
     </div>
     <div class="panel-body">
         <%
+            // Use the pagedown service to convert the README.md markdown file to html
             var converter = new pagedown.Converter();
 
             var markdown = fileService.getFileContents("README.md");
 
-            var reademe = "";
+            var readme = "";
             if (markdown != null) {
                 readme = converter.makeHtml(markdown);
             }
-          %>
+        %>
 
+        <!-- the '-' means do not escape the output -->
         <%- readme %>
     </div>
 </div>
