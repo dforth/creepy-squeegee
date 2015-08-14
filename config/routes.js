@@ -70,6 +70,11 @@ module.exports.routes = {
     action: 'updateRating'
   },
 
+  'GET /ratings/clear': {
+    controller: 'RatingsController',
+    action: 'clearRatings'
+  },
+
   /**
    * Password Field Example
    */

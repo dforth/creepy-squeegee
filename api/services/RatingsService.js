@@ -2,6 +2,7 @@
 
 var ratingsData = null;
 
+
 function getRandomRatingsData() {
 
     var data = [];
@@ -16,6 +17,11 @@ function getRandomRatingsData() {
 
     return data;
 }
+
+module.exports.clearRatings = function() {
+
+    ratingsData = getRandomRatingsData();
+};
 
 module.exports.getRatings = function() {
 

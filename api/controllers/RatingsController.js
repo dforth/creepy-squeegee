@@ -15,6 +15,13 @@ module.exports.getView = function (req, res) {
 
 };
 
+module.exports.clearRatings = function(req, res) {
+
+    RatingsService.clearRatings();
+
+    return res.redirect('/ratings');
+};
+
 
 /**
  *
