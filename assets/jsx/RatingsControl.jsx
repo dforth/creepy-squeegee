@@ -3,15 +3,15 @@ var RatingsControl = React.createClass({
     getInitialState: function() {
 
         return {
-            value: 0
+            userValue: 0
         };
     },
     componentDidMount: function() {
 
-        if (this.props.initialValue) {
+        if (this.props['userValue']) {
 
             this.setState({
-                value: this.props.initialValue
+                userValue: this.props['userValue']
             })
         }
     },
@@ -19,6 +19,8 @@ var RatingsControl = React.createClass({
 
     },
     _changeRating: function(newValue) {
+
+        console.log('newValue: ', newValue);
 
         if (newValue < 0) {
 
@@ -29,29 +31,52 @@ var RatingsControl = React.createClass({
             newValue = 5;
         }
 
-        this.setState({value: newValue});
+        if (newValue == this.state.userValue) {
+
+            newValue = newValue - 1;
+        }
+
+        this.setState({userValue: newValue});
+
+        this._updateServer(newValue);
+    },
+    _updateServer: function(value) {
+
+        // If we have a function to call
+        if (this.props['updateCallback']) {
+
+            this.props['updateCallback'](value, this.props['updateContext']);
+        }
     },
     render: function() {
 
-        var currentValue = this.state.value;
+        var displayValue = this.props['averageValue'];
+        var starsClass = "ratings-control average-value";
+
+        if (this.state.userValue > 0) {
+
+            displayValue = this.state.userValue;
+            starsClass = "ratings-control user-value";
+        }
+
         var stars = [];
 
-        for(var i = 0; i < currentValue; i++) {
+        for(var i = 0; i < displayValue; i++) {
             stars.push(
-                <span key={"" + i} className="glyphicon glyphicon-star" onClick={this._changeRating.bind(this, i)}></span>
+                <span key={"" + i} className="glyphicon glyphicon-star" onClick={this._changeRating.bind(this, i + 1)}></span>
             );
         }
 
-        for (var j = currentValue; j < 5; j++) {
+        for (var j = displayValue; j < 5; j++) {
             stars.push(
                 <span key={"" + j} className="glyphicon glyphicon-star-empty" onClick={this._changeRating.bind(this, j + 1)}></span>
             );
         }
 
         return (
-            <span id={"ratingsControl-" + this.props.id}>
+            <span id={"ratingsControl-" + this.props.id} className={starsClass}>
                 {
-                    stars.map(function (star, index) {
+                    stars.map(function (star) {
                         return (star);
                     })
                 }

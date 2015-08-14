@@ -6,23 +6,54 @@
         <!-- Start -->
         <script src="/jsx/RatingsControl.js" ></script>
 
-        <div>
-            <strong>Rateable Thingy</strong>
-            <span id="ratingsContainer">
-                <span class="glyphicon glyphicon-star-empty"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
-            </span>
-        </div>
-
         <script>
-            var ratingsControlHandle = React.render(
-                    React.createElement(RatingsControl, {id: '1', initialValue: 3}),
-                    document.getElementById('ratingsContainer')
-            );
+
+            function updateRating(ratingValue, context) {
+
+                $.ajax({
+                    async: true,
+                    type: "POST",
+                    url: "/ratings/" + context['thingyId'],
+                    data: JSON.stringify({"rating": ratingValue}),
+                    contentType: "application/json;",
+                    dataType: "json",
+                    success: function (data) {
+
+                        console.log("Success: ", data);
+
+                    }.bind(this),
+                    error: function (error) {
+
+                        console.log("Error: ", error);
+
+                    }.bind(this)
+                });
+            }
+
+
         </script>
+
+        <% ratingsData.forEach(function(thingy) { %>
+            <div class="ratings-control-group">
+                <strong>Rateable Thingy <%= thingy["thingyId"] %></strong>
+                <span id="ratingsContainer-<%= thingy["thingyId"]%>">
+                </span>
+            </div>
+            <script>
+                React.render(
+                        React.createElement(RatingsControl, {
+                            id: '<%= thingy["thingyId"] %>',
+                            userValue: <%= thingy["userRating"] %>,
+                            averageValue: <%= thingy["averageRating"] %>,
+                            updateCallback: updateRating,
+                            updateContext: {
+                                thingyId: <%= thingy["thingyId"] %>
+                            }
+                        }),
+                        document.getElementById('ratingsContainer-<%= thingy["thingyId"]%>')
+                );
+            </script>
+        <% }); %>
         <!-- End -->
     </div>
 </div>

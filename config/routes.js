@@ -65,6 +65,11 @@ module.exports.routes = {
     action: 'getView'
   },
 
+  'POST /ratings/:thingyId': {
+    controller: 'RatingsController',
+    action: 'updateRating'
+  },
+
   /**
    * Password Field Example
    */
