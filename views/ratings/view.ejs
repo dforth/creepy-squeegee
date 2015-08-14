@@ -3,5 +3,25 @@
         <strong>Ratings Example</strong>
     </div>
     <div class="panel-body">
+
+        <script src="/jsx/RatingsControl.js" ></script>
+
+        <div>
+            <strong>Rateable Thingy</strong>
+            <span id="ratingsContainer">
+                <span class="glyphicon glyphicon-star-empty"></span>
+                <span class="glyphicon glyphicon-star-empty"></span>
+                <span class="glyphicon glyphicon-star-empty"></span>
+                <span class="glyphicon glyphicon-star-empty"></span>
+                <span class="glyphicon glyphicon-star-empty"></span>
+            </span>
+        </div>
+
+        <script>
+            var ratingsControlHandle = React.render(
+                    React.createElement(RatingsControl, {id: '1', initialValue: 3}),
+                    document.getElementById('ratingsContainer')
+            );
+        </script>
     </div>
 </div>
