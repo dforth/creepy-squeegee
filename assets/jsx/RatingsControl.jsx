@@ -20,8 +20,6 @@ var RatingsControl = React.createClass({
     },
     _changeRating: function(newValue) {
 
-        console.log('newValue: ', newValue);
-
         if (newValue < 0) {
 
             newValue = 0;
