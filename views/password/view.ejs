@@ -4,9 +4,10 @@
     </div>
     <div class="panel-body">
 
-        <form class="well form-signin" role="form" action="/login" method="POST">
+        <!-- Start -->
+        <script src="/jsx/PasswordField.js" ></script>
 
-            <script src="/jsx/PasswordField.js" ></script>
+        <form class="well form-signin" role="form" action="/login" method="POST">
 
             <h2 class="form-signin-heading">Sign In <small>Any value works</small></h2>
             <label for="username" class="sr-only">Username</label>
@@ -20,14 +21,16 @@
             <div>&nbsp;</div>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 
-            <script>
-                var passwordFieldHandle = React.render(
-                        React.createElement(PasswordField, {fieldName: 'user[password]'}),
-                        document.getElementById('passwordFieldContainer')
-                );
-            </script>
-
         </form>
+
+        <script>
+            var passwordFieldHandle = React.render(
+                    React.createElement(PasswordField, {fieldName: 'user[password]'}),
+                    document.getElementById('passwordFieldContainer')
+            );
+        </script>
+
+        <!-- End -->
     </div>
 </div>
 
@@ -38,7 +41,7 @@
     <div class="panel-body">
         <%
             var contents = fileService.getFileContents("views/password/view.ejs");
-            contents = fileService.clipTextBetween(contents,"<form", "</form>");
+            contents = fileService.clipTextBetween(contents,"<!-- Start -->", "<!-- End -->");
         %>
 
         <pre class="prettyprint">

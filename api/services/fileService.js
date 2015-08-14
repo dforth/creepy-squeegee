@@ -16,14 +16,20 @@ module.exports.getFileContents = function(path) {
     return contents;
 };
 
-module.exports.clipTextBetween = function(text, startText, endText) {
+module.exports.clipTextBetween = function(text, startText, endText, includeStartAndEnd) {
 
     var result = text;
 
     if (startText) {
 
+
         var startIndex = text.indexOf(startText);
         if (startIndex > -1) {
+
+            if (!includeStartAndEnd) {
+
+                startIndex = startIndex + startText.length;
+            }
 
             text = text.substr(startIndex);
         }
@@ -35,7 +41,12 @@ module.exports.clipTextBetween = function(text, startText, endText) {
 
         if (endIndex > -1) {
 
-            text = text.substr(0, endIndex + endText.length);
+            if (includeStartAndEnd) {
+
+                endIndex = endIndex + endText.length;
+            }
+
+            text = text.substr(0, endIndex);
         }
     }
 

@@ -3,7 +3,7 @@
         <strong>Ratings Example</strong>
     </div>
     <div class="panel-body">
-
+        <!-- Start -->
         <script src="/jsx/RatingsControl.js" ></script>
 
         <div>
@@ -23,5 +23,40 @@
                     document.getElementById('ratingsContainer')
             );
         </script>
+        <!-- End -->
+    </div>
+</div>
+
+<div class="panel panel-default" id="messagesPanel">
+    <div class="panel-heading">
+        <strong>Html</strong>
+    </div>
+    <div class="panel-body">
+        <%
+        var contents = fileService.getFileContents("views/ratings/view.ejs");
+        contents = fileService.clipTextBetween(contents,"<!-- Start -->", "<!-- End -->");
+        %>
+
+        <pre class="prettyprint">
+
+        <%= contents %>
+        </pre>
+    </div>
+</div>
+
+<div class="panel panel-default" id="messagesPanel">
+    <div class="panel-heading">
+        <strong>React Source</strong>
+    </div>
+    <div class="panel-body">
+
+        <%
+        var ejxSource = fileService.getFileContents("assets/jsx/RatingsControl.jsx");
+        %>
+
+        <pre class="prettyprint">
+
+<%= ejxSource %>
+        </pre>
     </div>
 </div>
