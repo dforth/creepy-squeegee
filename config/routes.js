@@ -87,6 +87,24 @@ module.exports.routes = {
   'POST /login': {
     controller: 'PasswordController',
     action: 'login'
+  },
+
+  /**
+   * Graph Example
+   */
+
+  'GET /graph': {
+    view: 'graph/view'
+  },
+
+  'GET /graph/reset': {
+    controller: 'GraphController',
+    action: 'resetGraphData'
+  },
+
+  'GET /graph/data': {
+    controller: 'GraphController',
+    action: 'getGraphData'
   }
 
 };

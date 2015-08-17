@@ -28,6 +28,7 @@ Examples using NodeJS, SailsJS, and React JS
 
 ## Examples
 
-* **[Password Field Control](/password):** React password field control with visibility toggle.
-* **[Ratings Control](/ratings):** React ratings control with server update.
+* **[Password Field Control](/password):** React password field control with visibility toggle. Shows simple dom manipulation based on user click.
+* **[Ratings Control](/ratings):** React ratings control with server update. Shows server side update via asynchronous request.
+* **[Data Visualisation](/graph):** React control to visualize simple data. Shows timer based data retrieval from server.
 * TBD...
