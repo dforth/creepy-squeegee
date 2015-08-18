@@ -50,7 +50,7 @@ var PasswordField = React.createClass({
                     required="true"
                     pattern=".{6,20}"
                     title="Requires between 6 and 20 characters." />
-                <span className="input-group-addon" onClick={this._handleClick}><span className={glyphClass}></span></span>
+                <span className="input-group-addon" onClick={this._handleClick} onTouchEnd={this._handleClick}><span className={glyphClass}></span></span>
             </div>
         );
     }

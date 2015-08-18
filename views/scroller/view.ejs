@@ -27,6 +27,10 @@
                 "Item 10"
             ];
 
+
+            // Enable touch events
+            React.initializeTouchEvents(true);
+
             // Render a react element into the specified element
             React.render(
                 React.createElement(Scroller, {id:'0', items: items, maxVisible: 3}),

@@ -45,6 +45,9 @@
                 </span>
             </div>
             <script>
+                // Enable touch events
+                React.initializeTouchEvents(true);
+
                 // Note: we pass in everything we need to make each intance of the control independant and unique.
                 React.render(
                         React.createElement(RatingsControl, {

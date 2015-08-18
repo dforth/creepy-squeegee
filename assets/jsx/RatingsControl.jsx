@@ -72,13 +72,13 @@ var RatingsControl = React.createClass({
 
         for(var i = 0; i < displayValue; i++) {
             stars.push(
-                <span key={"" + i} className="glyphicon glyphicon-star" onClick={this._changeRating.bind(this, i + 1)}></span>
+                <span key={"" + i} className="glyphicon glyphicon-star" onClick={this._changeRating.bind(this, i + 1)} onTouchEnd={this._changeRating.bind(this, i + 1)}></span>
             );
         }
 
         for (var j = displayValue; j < 5; j++) {
             stars.push(
-                <span key={"" + j} className="glyphicon glyphicon-star-empty" onClick={this._changeRating.bind(this, j + 1)}></span>
+                <span key={"" + j} className="glyphicon glyphicon-star-empty" onClick={this._changeRating.bind(this, j + 1)} onTouchEnd={this._changeRating.bind(this, j + 1)}></span>
             );
         }
 
