@@ -7,7 +7,7 @@ var ScrollerItem = React.createClass({
         return (
             <div id={"scroller-item-" + this.props.id} className="scroller-item">
                 {
-                    <span>Scroller Item {this.props.data}</span>
+                    <span>{this.props.data}</span>
                 }
             </div>
         );
@@ -40,7 +40,9 @@ var Scroller = React.createClass({
 
         var index = this.state.startIndex;
 
-        while (result.length < this.state.items.length && result.length <= this.props['maxVisible']) {
+        var maxVisible = this.props['maxVisible'];
+
+        while (result.length < this.state.items.length && result.length < maxVisible) {
 
             result.push(this.state.items[index]);
             index = index + 1;
@@ -84,7 +86,11 @@ var Scroller = React.createClass({
 
         return (
             <div id={"scroller-" + this.props.id} className="scroller">
-                <a href="#" className="btn btn-default" onClick={this._moveLeft}>Left</a>
+                <a href="#"
+                   className="scroller-button"
+                   onClick={this._moveLeft}
+                   onTouchEnd={this._moveLeft}><span className="glyphicon glyphicon-chevron-left"></span></a>
+
                 {
                     items.map(function (item, index) {
                         return (
@@ -92,7 +98,11 @@ var Scroller = React.createClass({
                         );
                     })
                 }
-                <a href="#" className="btn btn-default" onClick={this._moveRight}>Right</a>
+
+                <a href="#"
+                   className="scroller-button"
+                   onClick={this._moveRight}
+                   onTouchEnd={this._moveRight}><span className="glyphicon glyphicon-chevron-right"></span></a>
             </div>
         );
     }
