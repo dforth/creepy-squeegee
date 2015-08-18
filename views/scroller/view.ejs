@@ -1,0 +1,74 @@
+<div class="panel panel-default" id="messagesPanel">
+    <div class="panel-heading">
+        <strong>Scroller Example</strong>
+    </div>
+    <div class="panel-body">
+
+        <!-- Code between the Start and End will be displayed on the example page -->
+        <!-- Start -->
+        <script src="/jsx/Scroller.js" ></script>
+
+        <div id="scrollerContainer">
+            <!-- scroller will go here -->
+        </div>
+
+        <script>
+
+            var items = [
+                "Item 1",
+                "Item 2",
+                "Item 3",
+                "Item 4",
+                "Item 5",
+                "Item 6",
+                "Item 7",
+                "Item 8",
+                "Item 9",
+                "Item 10"
+            ];
+
+            // Render a react element into the specified element
+            React.render(
+                React.createElement(Scroller, {id:'0', items: items, maxVisible: 3}),
+                document.getElementById('scrollerContainer')
+            );
+        </script>
+
+        <!-- End -->
+
+    </div>
+</div>
+
+<div class="panel panel-default" id="messagesPanel">
+    <div class="panel-heading">
+        <strong>Html Source</strong>
+    </div>
+    <div class="panel-body">
+        <%
+        var contents = fileService.getFileContents("views/scroller/view.ejs");
+        contents = fileService.clipTextBetween(contents,"<!-- Start -->", "<!-- End -->");
+        %>
+
+        <pre class="prettyprint">
+
+        <%= contents %>
+        </pre>
+    </div>
+</div>
+
+<div class="panel panel-default" id="messagesPanel">
+    <div class="panel-heading">
+        <strong>React Source</strong>
+    </div>
+    <div class="panel-body">
+
+        <%
+        var ejxSource = fileService.getFileContents("assets/jsx/Scroller.jsx");
+        %>
+
+        <pre class="prettyprint">
+
+<%= ejxSource %>
+        </pre>
+    </div>
+</div>

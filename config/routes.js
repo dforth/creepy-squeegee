@@ -105,6 +105,14 @@ module.exports.routes = {
   'GET /graph/data': {
     controller: 'GraphController',
     action: 'getGraphData'
+  },
+
+  /**
+   * Scroller
+   */
+
+  'GET /scroller': {
+    view: 'scroller/view'
   }
 
 };
