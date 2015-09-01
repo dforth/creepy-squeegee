@@ -12,11 +12,16 @@ var ServerStatus = React.createClass({
     },
     _onConnect: function() {
 
-        this.setState({active:true});
+        this.setState({
+            active:true
+        });
     },
     _onDisconnect: function() {
 
-        this.setState({active:false});
+        this.setState({
+            active:false,
+            beatToggle:false
+        });
     },
     componentDidMount: function() {
 
@@ -29,16 +34,10 @@ var ServerStatus = React.createClass({
 
         var active = this.state.active;
 
-        if (active == null) {
+        if (active) {
 
             return (
-              <span className="text-warning" ><span className="glyphicon glyphicon-warning-sign"></span> Checking...</span>
-            );
-
-        } else if (active) {
-
-            return (
-                <span className="text-success" ><span className="glyphicon glyphicon-thumbs-up"></span> Live</span>
+                <span className="text-success" ><span className="glyphicon glyphicon-thumbs-up"></span> <span className="bold">Live</span></span>
             );
 
         } else {
