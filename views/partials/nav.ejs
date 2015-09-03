@@ -1,0 +1,12 @@
+<ul class="nav navbar-nav">
+    <%
+        function isActivePath(root) {
+            return (req.path.indexOf(root) == 0);
+        }
+    %>
+
+    <% data.forEach(function(navItem) { %>
+        <li class="<% if (isActivePath(navItem.href)) { %>active<% } %>"><a href="<%= navItem.href %>"><strong><%= navItem.label %></strong> <span class="sr-only">(current)</span></a></li>
+    <% }); %>
+
+</ul>

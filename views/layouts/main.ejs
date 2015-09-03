@@ -86,18 +86,15 @@
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div>
-                    <ul class="nav navbar-nav">
-                        <%
-                            function isActivePath(root) {
-                                return (req.path.indexOf(root) == 0);
-                            }
-                        %>
-                        <li class="<% if (isActivePath('/password')) { %>active<% } %>"><a href="/password"><strong>Password Field</strong> <span class="sr-only">(current)</span></a></li>
-                        <li class="<% if (isActivePath('/ratings')) { %>active<% } %>"><a href="/ratings"><strong>Ratings</strong> <span class="sr-only">(current)</span></a></li>
-                        <li class="<% if (isActivePath('/graph')) { %>active<% } %>"><a href="/graph"><strong>Graph</strong> <span class="sr-only">(current)</span></a></li>
-                        <li class="<% if (isActivePath('/scroller')) { %>active<% } %>"><a href="/scroller"><strong>Scroller</strong> <span class="sr-only">(current)</span></a></li>
-
-                    </ul>
+                    <%- partial('../partials/nav', {
+                        data: [
+                            { label: "Password", href: "/password" },
+                            { label: "Ratings", href: "/ratings" },
+                            { label: "Graph", href: "/graph" },
+                            { label: "Scroller", href: "/scroller" },
+                            { label: "Chat", href: "/chat"}
+                        ]
+                    }) %>
 
                     <ul class="nav navbar-nav navbar-right">
                         <li class="navbar-text bold" id="statusContainer"><!-- server status control goes here --></li>
