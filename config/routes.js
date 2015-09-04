@@ -113,6 +113,14 @@ module.exports.routes = {
 
   'GET /scroller': {
     view: 'scroller/view'
+  },
+
+  /**
+   * Chat
+   */
+
+  'GET /chat': {
+    view: 'chat/view'
   }
 
 };
