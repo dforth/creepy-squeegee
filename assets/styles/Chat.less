@@ -1,0 +1,70 @@
+.chatWindow {
+  width: 800px;
+  height: 500px;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.chatInput {
+  background-color: transparent;
+  position: absolute;
+  left: 100px;
+  right: 0px;
+  bottom: 0px;
+  height: auto;
+  margin: 5px;
+  display: inline-block;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+.chatInput input {
+  width: 100%;
+}
+
+.chatMessages {
+  display: inline-block;
+  background-color: white;
+  position: absolute;
+  left: 100px;
+  top: 0px;
+}
+
+.chatControls {
+  display: inline-block;
+  background-color: lightgray;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 100px;
+  border-right: 2px solid black;
+}
+
+.chatControls .title {
+  background-color: white;
+  text-align: center;
+  border-bottom: 1px solid black;
+}
+
+.message {
+  width: auto;
+}
+
+.message .messageSender {
+  color: black;
+  font-weight: bold;
+}
+
+.message .messageText {
+  color: black;
+  font-weight: normal;
+  text-wrap: normal;
+}
+
+.logoffButton {
+  display: inline-block;
+  margin: 0 auto;
+}

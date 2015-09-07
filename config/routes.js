@@ -121,6 +121,26 @@ module.exports.routes = {
 
   'GET /chat': {
     view: 'chat/view'
+  },
+
+  'POST /chat/logon': {
+    controller: 'ChatController',
+    action: 'logon'
+  },
+
+  'GET /chat/logoff': {
+    controller: 'ChatController',
+    action: 'logoff'
+  },
+
+  'POST /chat/join': {
+    controller: 'ChatController',
+    action: 'joinRoom'
+  },
+
+  'POST /chat/send': {
+    controller: 'ChatController',
+    action: 'sendMessage'
   }
 
 };
