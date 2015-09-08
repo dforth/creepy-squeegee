@@ -1,10 +1,7 @@
-
-
 var users = [];
 var rooms = [];
 
-
-function updateUserRoom(userId, roomName) {
+function updateUsersRoom(userId, roomName) {
 
     for(var i=0; i < users.length; i++) {
 
@@ -13,13 +10,8 @@ function updateUserRoom(userId, roomName) {
             users[i].room = roomName;
             break;
         }
-
     }
 }
-
-
-
-
 
 module.exports.addUser = function(userId, nick) {
 
@@ -77,35 +69,45 @@ module.exports.addUserToRoom = function(userId, roomName) {
 
         room = {
             name: roomName,
-            users: []
+            users: [userId]
         };
 
         rooms.push(room);
+
+    } else {
+
+        for (var i=0; i < rooms.length; i++) {
+
+            if (rooms[i].name == roomName) {
+
+                room[i].users.push(userId);
+            }
+        }
     }
 
-    room.users.push(userId);
-
     // Fix the user record as well
-    updateUserRoom(userId, roomName);
+    updateUsersRoom(userId, roomName);
 
-
+    return rooms;
 };
 
 module.exports.removeUserFromRoom = function(userId, roomName) {
 
-    var room = _.find(rooms, {name: roomName});
+    for (var i=0; i < rooms.length; i++) {
 
-    if (room != null) {
+        if (rooms[i].name == roomName) {
 
-        room.users = _.filter(room.users, function(userId) {
+            room[i].users = _.filter(room[i].users, function(userId) {
 
-            return userId != userId;
-        });
+                return userId != userId;
+            });
+        }
     }
 
     // Fix the user record as well
-    updateUserRoom(userId, roomName);
+    updateUsersRoom(userId, null);
 
+    return rooms;
 };
 
 module.exports.getUsers = function() {

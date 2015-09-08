@@ -52,6 +52,40 @@ var ChatControls = React.createClass({
     }
 });
 
+var ChatMessage = React.createClass({
+
+    render: function() {
+
+        var message = this.props.message;
+
+        if (message.type == 'system') {
+
+            return (
+                <div className="message">
+                    <span className="messageSystem">{message.message}</span>
+                </div>
+            );
+
+        } else if (message.type == 'emote') {
+
+            return (
+                <div className="message">
+                    <span className="messageEmote">{user.nick + " " + message.message}</span>
+                </div>
+            );
+
+        } else {
+
+            return (
+                <div className="message">
+                    <span className="messageSender">{message.user.nick + ": "}</span>
+                    <span className="messageText">{message.message}</span>
+                </div>
+            );
+        }
+    }
+});
+
 var ChatMessages = React.createClass({
 
     render: function() {
@@ -61,12 +95,9 @@ var ChatMessages = React.createClass({
         return (
             <div className="chatMessages">
                 {
-                    messages.map(function (message) {
+                    messages.map(function (message, index) {
                         return (
-                            <div className="message">
-                                <span className="messageSender">{message.user.nick + ": "}</span>
-                                <span className="messageText">{message.message}</span>
-                            </div>
+                            <ChatMessage key={index} message={message} />
                         );
                     })
                 }
@@ -159,10 +190,38 @@ var Chat = React.createClass({
 
         console.log('Chat._sendMessage: ', message);
 
-        io.socket.post('/chat/send', {message: message}, function(data, jwres) {
+        if (_.startsWith(message, "/nick")) {
 
-            console.log("send Success: " , data);
-        });
+            var newNick = message.substr(6);
+
+            io.socket.post('/chat/nick', {nick: newNick}, function(data, jwres) {
+
+                console.log("change nick Success: " , data);
+
+                this.setState({
+                    user: data.user
+                });
+
+            }.bind(this));
+
+        } else if (_.startsWith(message, "/em")) {
+
+            var emoteText = message.substring(4);
+
+            io.socket.post('/chat/emote', {message: emoteText}, function(data, jwres) {
+
+                console.log("emote Success: " , data);
+
+            }.bind(this));
+
+        } else {
+
+            io.socket.post('/chat/send', {message: message}, function(data, jwres) {
+
+                console.log("send Success: " , data);
+
+            }.bind(this));
+        }
     },
     _logon: function() {
 

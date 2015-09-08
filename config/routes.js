@@ -141,6 +141,16 @@ module.exports.routes = {
   'POST /chat/send': {
     controller: 'ChatController',
     action: 'sendMessage'
+  },
+
+  'POST /chat/nick': {
+    controller: 'ChatController',
+    action: 'changeNick'
+  },
+
+  'POST /chat/emote': {
+    controller: 'ChatController',
+    action: 'emote'
   }
 
 };

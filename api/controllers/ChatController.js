@@ -7,10 +7,12 @@ function joinHelper(req, user, roomName) {
 
         sails.sockets.join(req.socket, roomName);
 
-        ChatService.addUserToRoom(user.userId, roomName);
+        var rooms = ChatService.addUserToRoom(user.userId, roomName);
 
         sails.log.debug('broadcasting chat event join');
         sails.sockets.broadcast(roomName, CHAT_EVENT, {type: "system", message: "user joined room " + roomName, user: user});
+
+        return rooms;
     }
 }
 
@@ -20,10 +22,12 @@ function leaveHelper(req, user, roomName) {
 
         sails.sockets.leave(req.socket, roomName);
 
-        ChatService.removeUserFromRoom(user.userId, roomName);
+        var rooms = ChatService.removeUserFromRoom(user.userId, roomName);
 
         sails.log.debug('broadcasting chat event leave');
         sails.sockets.broadcast(roomName, CHAT_EVENT, {type: "system", message: "user leaving room " + roomName, user: user});
+
+        return rooms;
     }
 }
 
@@ -36,14 +40,10 @@ module.exports.logon = function(req, res) {
 
     var user = ChatService.addUser(socketId, nick);
 
-    var users = ChatService.getUsers();
-
-    var rooms = ChatService.getRooms();
-
     res.json({
         user: user,
-        users: users,
-        rooms: rooms
+        users: ChatService.getUsers(),
+        rooms: ChatService.getRooms()
     });
 
 };
@@ -56,26 +56,50 @@ module.exports.logoff = function(req, res) {
 
     var user = ChatService.getUser(socketId);
 
-    leaveHelper(req, user, user.currentRoom);
+    var rooms = leaveHelper(req, user, user.room);
 
     ChatService.removeUser(socketId);
 
-    res.json({});
+    res.json({rooms: rooms});
 
 };
 
 module.exports.changeNick = function(req, res) {
 
     var socketId = sails.sockets.id(req.socket);
-    var newNick = req.param('nick');
+
+    var newNick = req.body.nick;
 
     var user = ChatService.getUser(socketId);
 
-    var oldNick = user['nick'];
+    var oldNick = user.nick;
 
     user = ChatService.changeNick(socketId, newNick);
 
-    sails.sockets.broadcast(user['currentRoom'], CHAT_EVENT, {message: oldNick + " is now known as " + newNick + "."});
+    sails.sockets.broadcast(user.room, CHAT_EVENT, {type: "system", message: oldNick + " is now known as " + newNick + "."});
+
+    res.json({
+        user: user
+    });
+};
+
+module.exports.emote = function(req, res) {
+
+    sails.log.debug("ChatController emote");
+
+    var message = req.body['message'];
+
+    sails.log.debug("emote message: ", message);
+
+    var socketId = sails.sockets.id(req.socket);
+
+    var user = ChatService.getUser(socketId);
+
+    sails.log.debug("send user: ", user);
+
+    sails.sockets.broadcast(user.room, CHAT_EVENT , {type: "emote", user: user, message: message});
+
+    res.json({});
 };
 
 
@@ -93,10 +117,10 @@ module.exports.joinRoom = function(req, res) {
 
     sails.log.debug('join user: ', user);
 
-    leaveHelper(req, user, user.room);
-    joinHelper(req, user, roomName);
+    var rooms = leaveHelper(req, user, user.room);
+    rooms = joinHelper(req, user, roomName);
 
-    res.json({});
+    res.json({rooms: rooms});
 };
 
 
