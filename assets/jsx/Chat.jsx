@@ -70,7 +70,7 @@ var ChatMessage = React.createClass({
 
             return (
                 <div className="message">
-                    <span className="messageEmote">{user.nick + " " + message.message}</span>
+                    <span className="messageEmote">{message.user.nick + " " + message.message}</span>
                 </div>
             );
 
