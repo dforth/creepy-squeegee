@@ -80,7 +80,7 @@ module.exports.addUserToRoom = function(userId, roomName) {
 
             if (rooms[i].name == roomName) {
 
-                room[i].users.push(userId);
+                rooms[i].users.push(userId);
             }
         }
     }
@@ -97,9 +97,9 @@ module.exports.removeUserFromRoom = function(userId, roomName) {
 
         if (rooms[i].name == roomName) {
 
-            room[i].users = _.filter(room[i].users, function(userId) {
+            rooms[i].users = _.filter(rooms[i].users, function(currentUserId) {
 
-                return userId != userId;
+                return currentUserId != userId;
             });
         }
     }

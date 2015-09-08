@@ -1,18 +1,28 @@
 
 var CHAT_EVENT = "CHAT_EVENT";
 
+function sendDataUpdate() {
+
+    sails.sockets.blast(CHAT_EVENT, {
+        type: "data",
+        rooms: ChatService.getRooms(),
+        users: ChatService.getUsers()
+    });
+}
+
 function joinHelper(req, user, roomName) {
 
     if (roomName != null) {
 
         sails.sockets.join(req.socket, roomName);
 
-        var rooms = ChatService.addUserToRoom(user.userId, roomName);
+        ChatService.addUserToRoom(user.userId, roomName);
 
         sails.log.debug('broadcasting chat event join');
-        sails.sockets.broadcast(roomName, CHAT_EVENT, {type: "system", message: "user joined room " + roomName, user: user});
 
-        return rooms;
+        sails.sockets.broadcast(roomName, CHAT_EVENT, {type: "system", message: user.nick + " joined room.", user: user});
+
+        sendDataUpdate();
     }
 }
 
@@ -22,12 +32,12 @@ function leaveHelper(req, user, roomName) {
 
         sails.sockets.leave(req.socket, roomName);
 
-        var rooms = ChatService.removeUserFromRoom(user.userId, roomName);
+        ChatService.removeUserFromRoom(user.userId, roomName);
 
         sails.log.debug('broadcasting chat event leave');
-        sails.sockets.broadcast(roomName, CHAT_EVENT, {type: "system", message: "user leaving room " + roomName, user: user});
+        sails.sockets.broadcast(roomName, CHAT_EVENT, {type: "system", message: user.nick + " left room.", user: user});
 
-        return rooms;
+        sendDataUpdate();
     }
 }
 
@@ -38,6 +48,8 @@ module.exports.logon = function(req, res) {
     var socketId = sails.sockets.id(req.socket);
     var nick = req.body['nick'];
 
+    sails.log.debug("logon nick: ", nick);
+
     var user = ChatService.addUser(socketId, nick);
 
     res.json({
@@ -46,6 +58,7 @@ module.exports.logon = function(req, res) {
         rooms: ChatService.getRooms()
     });
 
+    sendDataUpdate();
 };
 
 module.exports.logoff = function(req, res) {
@@ -62,6 +75,7 @@ module.exports.logoff = function(req, res) {
 
     res.json({rooms: rooms});
 
+    sendDataUpdate();
 };
 
 module.exports.changeNick = function(req, res) {
@@ -81,6 +95,8 @@ module.exports.changeNick = function(req, res) {
     res.json({
         user: user
     });
+
+    sendDataUpdate();
 };
 
 module.exports.emote = function(req, res) {
@@ -117,10 +133,10 @@ module.exports.joinRoom = function(req, res) {
 
     sails.log.debug('join user: ', user);
 
-    var rooms = leaveHelper(req, user, user.room);
-    rooms = joinHelper(req, user, roomName);
+    leaveHelper(req, user, user.room);
+    joinHelper(req, user, roomName);
 
-    res.json({rooms: rooms});
+    res.json({user: ChatService.getUser(socketId)});
 };
 
 

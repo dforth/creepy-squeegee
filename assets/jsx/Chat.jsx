@@ -168,29 +168,62 @@ var Chat = React.createClass({
 
         io.socket.on("CHAT_EVENT", this._handleEvent);
 
+        io.socket.on("disconnect", this._handleDisconnect);
+
     },
     componentWillUnmount: function() {
 
         this._logoff();
     },
+    _handleDisconnect: function() {
+
+        this.setState({
+            user: null,
+            users: [],
+            rooms: [],
+            messages: []
+        });
+    },
     _handleEvent: function(message) {
 
         console.log('handleEvent: ', message);
 
-        var messages = this.state.messages;
+        if (message.type == "data") {
 
-        messages.push(message);
+            this.setState({
+                users: message.users,
+                rooms: message.rooms
+            });
 
-        this.setState({
-            messages: messages
-        });
+        } else {
 
+            var messages = this.state.messages;
+
+            messages.push(message);
+
+            this.setState({
+                messages: messages
+            });
+        }
     },
     _sendMessage: function(message) {
 
         console.log('Chat._sendMessage: ', message);
 
-        if (_.startsWith(message, "/nick")) {
+        if (_.startsWith(message, "/join")) {
+
+            var roomName = message.substr(6);
+
+            io.socket.post('/chat/join', {room: roomName}, function(data, jwres) {
+
+                console.log("change room Success: ", data);
+
+                this.setState({
+                    user: data.user
+                });
+            });
+
+        } else if (_.startsWith(message, "/nick")) {
 
             var newNick = message.substr(6);
 
