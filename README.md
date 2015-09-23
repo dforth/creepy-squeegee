@@ -19,6 +19,11 @@ These examples are not meant to provide complete solutions. They only exist to i
 * [EJS](http://www.embeddedjs.com)
 * [Bootstrap](http://getbootstrap.com/)
 
+## Things You Should Read First
+
+* [React Tutorial](https://facebook.github.io/react/docs/tutorial.html)
+* [ReactJS For Stupid People](http://blog.andrewray.me/reactjs-for-stupid-people/)
+
 ## Getting Started
 
 1. Clone repository, or download zip
