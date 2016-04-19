@@ -2,13 +2,18 @@
 
 var ScrollerItem = React.createClass({
 
+    _handleClick: function() {
+
+      if (this.props.clickHandler) {
+
+        this.props.clickHandler(this.props.data);
+      }
+    },
     render: function() {
 
         return (
-            <div id={"scroller-item-" + this.props.id} className="scroller-item">
-                {
-                    <span>{this.props.data}</span>
-                }
+            <div id={"scroller-item-" + this.props.id} className="scroller-item" onClick={this._handleClick}>
+                <span>{this.props.data}</span>
             </div>
         );
     }
@@ -55,30 +60,48 @@ var Scroller = React.createClass({
 
         return result;
     },
+    _canMoveLeft: function() {
+
+      return (this.state.startIndex > 0 || this.props.wrap);
+    },
     _moveLeft: function() {
 
         var index = this.state.startIndex;
 
-        index = index - 1;
+        if (this._canMoveLeft()) {
 
-        if (index < 0) {
+          index = index - 1;
 
-            index = this.state.items.length - 1;
+          if (index < 0) {
+
+              index = this.state.items.length - 1;
+          }
+
+          this.setState({startIndex: index});
         }
+    },
+    _canMoveRight: function() {
 
-        this.setState({startIndex: index});
+      return (this.state.startIndex < (this.state.items.length - this.props.maxVisible) || this.props.wrap);
     },
     _moveRight: function() {
 
         var index = this.state.startIndex;
 
-        index = index + 1;
-        if (index >= this.state.items.length) {
+        if (this._canMoveRight()) {
+
+          index = index + 1;
+          if (index >= this.state.items.length) {
 
             index = 0;
-        }
+          }
 
-        this.setState({startIndex: index});
+          this.setState({startIndex: index});
+        }
+    },
+    _itemClickHandler: function(item) {
+
+      alert("_itemClickHandler for: " + item);
     },
     render: function() {
 
@@ -87,18 +110,16 @@ var Scroller = React.createClass({
         return (
             <div id={"scroller-" + this.props.id} className="scroller">
                 <a href="#"
-                   className="scroller-button"
-                   onClick={this._moveLeft}
-                   onTouchEnd={this._moveLeft}><span className="glyphicon glyphicon-chevron-left"></span></a>
-
+                  className="scroller-button"
+                  onClick={this._moveLeft}
+                  onTouchEnd={this._moveLeft}><span className="glyphicon glyphicon-chevron-left"></span></a>
                 {
                     items.map(function (item, index) {
                         return (
-                            <ScrollerItem key={index} data={item} id={index}/>
+                            <ScrollerItem key={index} data={item} id={index} clickHandler={this._itemClickHandler}/>
                         );
-                    })
+                    }.bind(this))
                 }
-
                 <a href="#"
                    className="scroller-button"
                    onClick={this._moveRight}
