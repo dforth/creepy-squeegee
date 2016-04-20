@@ -11,7 +11,7 @@ function getRandomRatingsData() {
         data.push({
            thingyId: i,
            userRating: null,
-           averageRating:  Math.floor(Math.random() * 5)
+           averageRating:  Math.random() * 5
         });
     }
 

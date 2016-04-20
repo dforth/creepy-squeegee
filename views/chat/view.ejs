@@ -30,36 +30,9 @@
     </div>
 </div>
 
-<div class="panel panel-default" id="messagesPanel">
-    <div class="panel-heading">
-        <strong>Html Source</strong>
-    </div>
-    <div class="panel-body">
-        <%
-        var contents = fileService.getFileContents("views/chat/view.ejs");
-        contents = fileService.clipTextBetween(contents,"<!-- Start -->", "<!-- End -->");
-        %>
-
-        <pre class="prettyprint">
-
-        <%= contents %>
-        </pre>
-    </div>
-</div>
-
-<div class="panel panel-default" id="messagesPanel">
-    <div class="panel-heading">
-        <strong>React Source</strong>
-    </div>
-    <div class="panel-body">
-
-        <%
-        var ejxSource = fileService.getFileContents("assets/jsx/Chat.jsx");
-        %>
-
-        <pre class="prettyprint">
-
-<%= ejxSource %>
-        </pre>
-    </div>
-</div>
+<%- partial('../partials/sourceFiles', {
+  htmlFilePath: "views/chat/view.ejs",
+  htmlStartDelimeter: "<!-- Start -->",
+  htmlEndDelimeter: "<!-- End -->",
+  jsxFilePath: "assets/jsx/Chat.jsx"
+}) %>

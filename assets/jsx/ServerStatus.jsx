@@ -37,13 +37,13 @@ var ServerStatus = React.createClass({
         if (active) {
 
             return (
-                <span className="text-success" ><span className="glyphicon glyphicon-thumbs-up"></span> <span className="bold">Live</span></span>
+                <span className="text-success" ><i className="fa fa-lg fa-thumbs-up"></i> <span className="bold">Live</span></span>
             );
 
         } else {
 
             return (
-                <span className="text-danger" ><span className="glyphicon glyphicon-thumbs-down"></span> Not Active</span>
+                <span className="text-danger" ><i className="fa fa-lg fa-thumbs-down"></i> Not Active</span>
             );
 
         }

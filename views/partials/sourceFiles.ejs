@@ -1,0 +1,33 @@
+<div class="panel panel-default" id="messagesPanel">
+    <div class="panel-heading">
+        <strong>Html Source</strong>
+    </div>
+    <div class="panel-body">
+        <%
+            var contents = fileService.getFileContents(htmlFilePath);
+            contents = fileService.clipTextBetween(contents, htmlStartDelimeter, htmlEndDelimeter);
+        %>
+
+        <pre class="prettyprint">
+
+        <%= contents %>
+        </pre>
+    </div>
+</div>
+
+<div class="panel panel-default" id="messagesPanel">
+    <div class="panel-heading">
+        <strong>React Source</strong>
+    </div>
+    <div class="panel-body">
+
+        <%
+            var ejxSource = fileService.getFileContents(jsxFilePath);
+        %>
+
+        <pre class="prettyprint">
+
+<%= ejxSource %>
+        </pre>
+    </div>
+</div>
