@@ -28,11 +28,15 @@
 
         <script>
             // Enable touch events
+            //TODO: dealing with touch controls has changed
             React.initializeTouchEvents(true);
 
             // Render a react element into the specified element
             React.render(
-                    React.createElement(PasswordField, {id:'0', fieldName: 'user[password]'}),
+                    React.createElement(PasswordField, {
+                      id:'0',
+                      fieldName: 'user[password]'
+                    }),
                     document.getElementById('passwordFieldContainer')
             );
         </script>

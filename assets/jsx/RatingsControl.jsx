@@ -70,18 +70,27 @@ var RatingsControl = React.createClass({
 
         var stars = [];
 
-        for(var i = 0; i < displayValue; i++) {
+        var count = 0;
+        for(var i = 0; i < Math.floor(displayValue); i++) {
             stars.push(
-                <i key={"" + i} className="fa fa-lg fa-star clickable" onClick={this._changeRating.bind(this, i + 1)} onTouchEnd={this._changeRating.bind(this, i + 1)}></i>
+                <i key={"" + count} className="fa fa-lg fa-star clickable" onClick={this._changeRating.bind(this, count + 1)} onTouchEnd={this._changeRating.bind(this, count + 1)}></i>
             );
+            count = count + 1;
         }
 
-        // TODO: handle half star ratings. "fa fa-lg fa-star-half-o"
+        if (displayValue % 1 > 0) {
+          stars.push(
+              <i key={"" + count} className="fa fa-lg fa-star-half-o clickable" onClick={this._changeRating.bind(this, count + 1)} onTouchEnd={this._changeRating.bind(this, count + 1)}></i>
+          );
+          count = count + 1;
+          displayValue = Math.floor(displayValue) + 1;
+        }
 
         for (var j = displayValue; j < 5; j++) {
             stars.push(
-                <i key={"" + j} className="fa fa-lg fa-star-o clickable" onClick={this._changeRating.bind(this, j + 1)} onTouchEnd={this._changeRating.bind(this, j + 1)}></i>
+                <i key={"" + count} className="fa fa-lg fa-star-o clickable" onClick={this._changeRating.bind(this, count + 1)} onTouchEnd={this._changeRating.bind(this, count + 1)}></i>
             );
+            count = count + 1;
         }
 
         return (

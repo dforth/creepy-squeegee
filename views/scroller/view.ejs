@@ -14,6 +14,10 @@
 
         <script>
 
+            // This could be any kind of data. You control the presentation.
+            // It could also be from anywhere. We could change this to give the
+            // control a handler that gets the data after the control is mounted.
+            // the data could come from the server. etc...
             var items = [
                 "Item 1",
                 "Item 2",
@@ -27,13 +31,17 @@
                 "Item 10"
             ];
 
-
             // Enable touch events
             React.initializeTouchEvents(true);
 
             // Render a react element into the specified element
             React.render(
-                React.createElement(Scroller, {id:'0', items: items, maxVisible: 5, wrap: false}),
+                React.createElement(Scroller, {
+                  id:'0',
+                  items: items,
+                  maxVisible: 5,
+                  wrap: false
+                }),
                 document.getElementById('scrollerContainer')
             );
         </script>
