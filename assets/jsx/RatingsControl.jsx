@@ -72,13 +72,15 @@ var RatingsControl = React.createClass({
 
         for(var i = 0; i < displayValue; i++) {
             stars.push(
-                <span key={"" + i} className="glyphicon glyphicon-star" onClick={this._changeRating.bind(this, i + 1)} onTouchEnd={this._changeRating.bind(this, i + 1)}></span>
+                <i key={"" + i} className="fa fa-lg fa-star clickable" onClick={this._changeRating.bind(this, i + 1)} onTouchEnd={this._changeRating.bind(this, i + 1)}></i>
             );
         }
 
+        // TODO: handle half star ratings. "fa fa-lg fa-star-half-o"
+
         for (var j = displayValue; j < 5; j++) {
             stars.push(
-                <span key={"" + j} className="glyphicon glyphicon-star-empty" onClick={this._changeRating.bind(this, j + 1)} onTouchEnd={this._changeRating.bind(this, j + 1)}></span>
+                <i key={"" + j} className="fa fa-lg fa-star-o clickable" onClick={this._changeRating.bind(this, j + 1)} onTouchEnd={this._changeRating.bind(this, j + 1)}></i>
             );
         }
 
