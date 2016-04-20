@@ -107,10 +107,26 @@ var Scroller = React.createClass({
 
         var items = this._getItemsToDisplay();
 
+        // Left Button Classes
+        var canMoveLeft = this._canMoveLeft();
+        var leftButtonClasses = classNames({
+          'scroller-button': true,
+          'active' : canMoveLeft,
+          'inactive' : !canMoveLeft
+        });
+
+        // Right Button Classes
+        var canMoveRight = this._canMoveRight();
+        var rightButtonClasses = classNames({
+          'scroller-button': true,
+          'active' : canMoveRight,
+          'inactive' : !canMoveRight
+        });
+
         return (
             <div id={"scroller-" + this.props.id} className="scroller">
                 <a href="#"
-                  className="scroller-button"
+                  className={leftButtonClasses}
                   onClick={this._moveLeft}
                   onTouchEnd={this._moveLeft}><span className="glyphicon glyphicon-chevron-left"></span></a>
                 {
@@ -121,7 +137,7 @@ var Scroller = React.createClass({
                     }.bind(this))
                 }
                 <a href="#"
-                   className="scroller-button"
+                   className={rightButtonClasses}
                    onClick={this._moveRight}
                    onTouchEnd={this._moveRight}><span className="glyphicon glyphicon-chevron-right"></span></a>
             </div>

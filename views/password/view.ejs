@@ -31,7 +31,7 @@
             React.initializeTouchEvents(true);
 
             // Render a react element into the specified element
-            var passwordFieldHandle = React.render(
+            React.render(
                     React.createElement(PasswordField, {id:'0', fieldName: 'user[password]'}),
                     document.getElementById('passwordFieldContainer')
             );

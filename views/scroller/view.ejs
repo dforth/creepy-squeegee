@@ -33,7 +33,7 @@
 
             // Render a react element into the specified element
             React.render(
-                React.createElement(Scroller, {id:'0', items: items, maxVisible: 5}),
+                React.createElement(Scroller, {id:'0', items: items, maxVisible: 5, wrap: false}),
                 document.getElementById('scrollerContainer')
             );
         </script>
