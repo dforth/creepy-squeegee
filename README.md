@@ -36,7 +36,8 @@ These examples are not meant to provide complete solutions. They only exist to i
 ## Examples
 
 * **Password Field Control:** React password field control with visibility toggle. Shows simple dom manipulation based on user click.
-* **Ratings Control:** React ratings control with server update. Shows server side update via asynchronous request.
-* **Data Visualisation:** React control to visualize simple data. Shows timer based data retrieval from server.
-* **Scroller:** Decomposition of multiple controls into simpler components.
+* **Ratings Control:** React ratings control with server update. Illustrates server side update via asynchronous request.
+* **Data Visualisation:** React control to visualize simple data. An example of timer based data retrieval from server.
+* **Scroller:** React controls to do a simple item scroller. Example of decomposition of multiple controls into simpler components.
+* **Chat:** React example for a slightly more complex state rich interface. Example of an embedded application.
 * TBD...
