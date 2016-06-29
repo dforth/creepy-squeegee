@@ -19,16 +19,47 @@
             // control a handler that gets the data after the control is mounted.
             // the data could come from the server. etc...
             var items = [
-                "Item 1",
-                "Item 2",
-                "Item 3",
-                "Item 4",
-                "Item 5",
-                "Item 6",
-                "Item 7",
-                "Item 8",
-                "Item 9",
-                "Item 10"
+                {
+                  label: "Item 1",
+                  image: "http://lorempixel.com/100/100/cats/1"
+                },
+                {
+                  label: "Item 2",
+                  image: "http://lorempixel.com/100/100/cats/2"
+                },
+                {
+                  label: "Item 3",
+                  image: "http://lorempixel.com/100/100/cats/3"
+                },
+                {
+                  label: "Item 4",
+                  image: "http://lorempixel.com/100/100/cats/4"
+                },
+                {
+                  label: "Item 5",
+                  image: "http://lorempixel.com/100/100/cats/5"
+                },
+                {
+                  label: "Item 6",
+                  image: "http://lorempixel.com/100/100/cats/6"
+                },
+                {
+                  label: "Item 7",
+                  image: "http://lorempixel.com/100/100/cats/7"
+                },
+                {
+                  label: "Item 8",
+                  image: "http://lorempixel.com/100/100/cats/8"
+                },
+                {
+                  label: "Item 9",
+                  image: "http://lorempixel.com/100/100/cats/9"
+                },
+                {
+                  label: "Item 10",
+                  image: "http://lorempixel.com/100/100/cats/10"
+                },
+
             ];
 
             // Enable touch events
@@ -40,7 +71,7 @@
                   id:'0',
                   items: items,
                   maxVisible: 5,
-                  wrap: false
+                  wrap: true
                 }),
                 document.getElementById('scrollerContainer')
             );

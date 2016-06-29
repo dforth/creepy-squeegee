@@ -13,7 +13,7 @@ var ScrollerItem = React.createClass({
 
         return (
             <div id={"scroller-item-" + this.props.id} className="scroller-item" onClick={this._handleClick}>
-                <span>{this.props.data}</span>
+                <img src={this.props.data.image} title={this.props.data.label}/>
             </div>
         );
     }
@@ -128,7 +128,7 @@ var Scroller = React.createClass({
                 <a href="#"
                   className={leftButtonClasses}
                   onClick={this._moveLeft}
-                  onTouchEnd={this._moveLeft}><span className="glyphicon glyphicon-chevron-left"></span></a>
+                  onTouchEnd={this._moveLeft}><i className="fa fa-lg fa-chevron-left"></i></a>
                 {
                     items.map(function (item, index) {
                         return (
@@ -139,7 +139,7 @@ var Scroller = React.createClass({
                 <a href="#"
                    className={rightButtonClasses}
                    onClick={this._moveRight}
-                   onTouchEnd={this._moveRight}><span className="glyphicon glyphicon-chevron-right"></span></a>
+                   onTouchEnd={this._moveRight}><i className="fa fa-lg fa-chevron-right"></i></a>
             </div>
         );
     }

@@ -3,6 +3,8 @@
   margin: 0 auto;
   padding: 5px;
   max-width: 600px;
+  display:flex;
+  flex-direction: row;
 }
 
 .scroller-item {
@@ -10,18 +12,21 @@
   font-weight: bold;
   width: 100px;
   height: 100px;
-  display: inline-block;
   border: 1px solid black;
   text-align: center;
+  flex:1;
 }
 
 .scroller-button {
   color: blue;
   width: 20px;
   height: 100px;
-  display: inline-block;
-  border: 1px solid grey;
   text-align: center;
+  flex:1;
+}
+
+.scroller-button > i {
+  line-height: 100px;
 }
 
 .scroller-button.active {
